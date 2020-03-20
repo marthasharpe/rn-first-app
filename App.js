@@ -20,16 +20,18 @@ export default function App() {
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="Course Goal"
+          placeholder="Learning Goal"
           style={styles.input}
           onChangeText={handleInput}
           value={newGoal}
           />
-        <Button title="+" onPress={addNewGoal}/>
+        <Button title="ADD" onPress={addNewGoal}/>
       </View>
       <View>
         {courseGoals.map(goal => (
-          <Text>{goal}</Text>
+          <View key={goal} style={styles.listItem}>
+            <Text>{goal}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -48,6 +50,13 @@ const styles = StyleSheet.create({
   input: {
     width: "80%",
     borderColor: "black",
+    borderWidth: 1
+  },
+  listItem: {
+    padding: 10,
+    marginTop: 10,
+    backgroundColor: '#ccc',
+    borderColor: 'black',
     borderWidth: 1
   }
 });
