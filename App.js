@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
 
 export default function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <View style={styles.container}>
-      <Text>Count: {count}</Text>
-      <Button title="Increment" onPress={() => setCount(count + 1)} />
-      <Button title="Decrement" onPress={() => setCount(count - 1)} />
-
+    <View style={styles.screen}>
+      <View style={styles.inputContainer}>
+        <TextInput placeholder="Course Goal" style={styles.input}/>
+        <Button title="ADD" />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  screen: {
+    padding: 50
   },
+  inputContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  input: {
+    width: "80%",
+    borderColor: "black",
+    borderWidth: 1
+  }
 });
