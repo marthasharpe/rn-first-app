@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View, 
+  Button, 
+  TextInput, 
+  ScrollView, 
+  FlatList
+} from 'react-native';
 
 export default function App() {
   const [newGoal, setNewGoal] = useState('');
@@ -11,7 +19,7 @@ export default function App() {
 
   const addNewGoal = () => {
     // this syntax guarantees that it is the current state snapshot
-    setCourseGoals(currentGoals => [...currentGoals, newGoal])
+    setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value: newGoal}])
     // clear input field
     setNewGoal('')
   }
@@ -27,13 +35,15 @@ export default function App() {
           />
         <Button title="ADD" onPress={addNewGoal}/>
       </View>
-      <View>
-        {courseGoals.map(goal => (
-          <View key={goal} style={styles.listItem}>
-            <Text>{goal}</Text>
+      <FlatList
+        keyExtractor={(item, index) => item.id}
+        data={courseGoals}
+        renderItem={itemData => (
+          <View style={styles.listItem}>
+            <Text>{itemData.item.value}</Text>
           </View>
-        ))}
-      </View>
+        )}>
+      </FlatList>
     </View>
   );
 }
