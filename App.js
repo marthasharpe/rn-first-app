@@ -26,10 +26,18 @@ export default function App() {
     });
   }
 
+  const closeModal = () => {
+    setGoalModal(false);
+  }
+
   return (
     <View style={styles.screen}>
       <Button title="Add New Goal" onPress={() => setGoalModal(true)}/>
-      <GoalInput visible={goalModal} addNewGoal={addNewGoal}/>
+      <GoalInput
+        visible={goalModal}
+        closeModal={closeModal}
+        addNewGoal={addNewGoal}
+      />
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
