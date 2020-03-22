@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import GoalInput from './components/GoalInput';
 import GoalItem from './components/GoalItem';
+import { ErrorBoundary } from './ErrorBoundary';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = React.useState([]);
@@ -31,6 +32,7 @@ export default function App() {
   }
 
   return (
+    <ErrorBoundary>
     <View style={styles.screen}>
       <Button title="Add New Goal" onPress={() => setGoalModal(true)}/>
       <GoalInput
@@ -50,6 +52,7 @@ export default function App() {
         )}>
       </FlatList>
     </View>
+    </ErrorBoundary>
   );
 }
 
